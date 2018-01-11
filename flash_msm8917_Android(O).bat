@@ -229,12 +229,12 @@ goto ChoiceBootMode
 :::::::::::::::::::::::
 :apdp
 @echo on
-%FASTBOOTPATH% flash apdp dp_AP_signed.img
+%FASTBOOTPATH% flash apdp dp_AP_signed.mbn
 goto ChoiceBootMode
 
 :msadp
 @echo on
-%FASTBOOTPATH% flash msadp dp_MSA_signed.img
+%FASTBOOTPATH% flash msadp dp_MSA_signed.mbn
 goto ChoiceBootMode
 
 :vendor
