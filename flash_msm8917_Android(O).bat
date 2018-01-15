@@ -49,7 +49,9 @@ Set installPath=C:\C_FastBoot_Flash8917\
 Set ADBPATH=%installPath%ADB\adb.exe
 Set FASTBOOTPATH=%installPath%ADB\fastboot.exe
 Set UZIPPATH=%installPath%7-Zip\App\ProgramFiles64\7z.exe
+Set MD5PATH=%installPath%Tools\md5sum.exe
 
+:: 注：右键执行时，默认当前目录为右键当前目录
 :::::::::::::::::::::::::::::::::
 
 
@@ -110,8 +112,38 @@ pause
 goto end
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
+:: 处理其他后缀镜像，进行匹配下载
 :main
+
+:: 版本校验单条
+@echo off
+@echo ************************
+@echo   Start md5 check . . .
+@echo ************************
+
+if not exist "checklist.md5" (
+echo checklist.md5 is not found!
+goto md5nofileend
+)
+
+
+findstr %~n1 checklist.md5 > %installPath%temp.md5
+
+%MD5PATH% -c %installPath%temp.md5
+
+erase %installPath%temp.md5
+
+@echo ************************
+@echo   Done.
+@echo ************************
+goto selectDownload
+
+:md5nofileend
+@echo ************************
+@echo Don't have checklist.md5
+@echo ************************
+goto selectDownload
+
 
 :: 添加 user 版本解锁 fastboot 命令
 ::fastboot oem enable-unlock-once
@@ -120,6 +152,9 @@ goto end
 :: 兼容之前脚本刷入所有分区
 ::::::::::::::::::::::::::::::::::::::::::
 :: 直接点击 
+
+:selectDownload
+
 @echo off
 IF {%~n1}=={} (goto flash_all) 
 
@@ -174,6 +209,33 @@ goto ChoiceBootMode
 Set imagePath=.\
 cd /d %imagePath%
 ::::::::::::::::::::::::::::::::
+
+:: 版本 md5 校验
+@echo off
+@echo ************************
+@echo   Start md5 check . . .
+@echo ************************
+
+if not exist "checklist.md5" (
+echo checklist.md5 is not found!
+goto md5nofileend
+)
+
+%MD5PATH% -c checklist.md5
+
+
+@echo ************************
+@echo   Done.
+@echo ************************
+goto flash_all_start
+
+:md5nofileend
+@echo ************************
+@echo Don't have checklist.md5
+@echo ************************
+goto flash_all_start
+
+:flash_all_start
 @echo on
 
 %FASTBOOTPATH% flash cmnlib cmnlib_30.mbn
@@ -222,6 +284,8 @@ cd /d %imagePath%
 %FASTBOOTPATH% flash asusfw asusfw.img
 %FASTBOOTPATH% flash logo logo.bin
 %FASTBOOTPATH% flash vendor vendor.img
+%FASTBOOTPATH% flash apdp  dp_AP_signed.mbn
+%FASTBOOTPATH% flash msadp dp_MSA_signed.mbn
 goto ChoiceBootMode
 
 :::::::::::::::::::::::
@@ -229,27 +293,27 @@ goto ChoiceBootMode
 :::::::::::::::::::::::
 :apdp
 @echo on
-%FASTBOOTPATH% flash apdp dp_AP_signed.mbn
+%FASTBOOTPATH% flash apdp %~f1
 goto ChoiceBootMode
 
 :msadp
 @echo on
-%FASTBOOTPATH% flash msadp dp_MSA_signed.mbn
+%FASTBOOTPATH% flash msadp %~f1
 goto ChoiceBootMode
 
 :vendor
 @echo on
-%FASTBOOTPATH% flash vendor vendor.img
+%FASTBOOTPATH% flash vendor %~f1
 goto ChoiceBootMode
 
 :logo
 @echo on
-%FASTBOOTPATH% flash logo logo.bin
+%FASTBOOTPATH% flash logo %~f1
 goto ChoiceBootMode
 
 :asusfw
 @echo on
-%FASTBOOTPATH% flash asusfw asusfw.img
+%FASTBOOTPATH% flash asusfw %~f1
 goto ChoiceBootMode
 
 :fs_image.tar.gz.mbn
@@ -278,7 +342,7 @@ goto ChoiceBootMode
 %FASTBOOTPATH% flash keymasterbak %~f1
 goto ChoiceBootMode
 
-::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::
 :dsp2
 @echo on
 %FASTBOOTPATH% flash adsp %~f1
@@ -327,7 +391,7 @@ goto ChoiceBootMode
 %FASTBOOTPATH% flash abootbak %~f1
 goto ChoiceBootMode
 
-:::::::::::::::::::: AP ::::::::::::::::::::::
+:::::::::::::::::::: AP 
 :boot
 @echo on
 %FASTBOOTPATH% flash boot %~f1
