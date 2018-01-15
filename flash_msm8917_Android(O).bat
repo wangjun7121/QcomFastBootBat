@@ -22,6 +22,7 @@
 ::      添加 user 版本解锁 fastboot 命令                              --20180104
 ::      添加服务器释放的 apk 右键解压功能                             --20180107
 ::      添加 vendor.img                                               --20180108
+::      添加 md5 校验功能                                             --20180115
 :: 关于 Bug: 自行解决
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -278,7 +279,15 @@ goto flash_all_start
 %FASTBOOTPATH% erase modemst1
 %FASTBOOTPATH% erase modemst2
 %FASTBOOTPATH% erase fsg
+
+if exist "fs_image.tar.gz.mbn.8917.full.band.img" (
 %FASTBOOTPATH% flash fsg fs_image.tar.gz.mbn.8917.full.band.img
+)
+if exist "fs_image.tar.gz.mbn.8937.full.band.img" (
+%FASTBOOTPATH% flash fsg fs_image.tar.gz.mbn.8937.full.band.img
+)
+
+
 %FASTBOOTPATH% erase misc
 
 %FASTBOOTPATH% flash asusfw asusfw.img
