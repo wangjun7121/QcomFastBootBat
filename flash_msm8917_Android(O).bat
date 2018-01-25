@@ -146,15 +146,16 @@ goto selectDownload
 goto selectDownload
 
 
-:: 添加 user 版本解锁 fastboot 命令
-::fastboot oem enable-unlock-once
+
 
 ::::::::::::::::::::::::::::::::::::::::::
 :: 兼容之前脚本刷入所有分区
 ::::::::::::::::::::::::::::::::::::::::::
 :: 直接点击 
-
 :selectDownload
+
+:: 添加 user 版本解锁 fastboot 命令
+fastboot oem enable-unlock-once
 
 @echo off
 IF {%~n1}=={} (goto flash_all) 
