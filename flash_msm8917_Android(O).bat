@@ -75,6 +75,9 @@ if /I "%bootChoice%" EQU "F" goto adbfastboot
 if "%bootChoice%"=="" goto main
 :adbfastboot
 @echo on
+%ADBPATH% wait-for-device
+%ADBPATH% root
+%ADBPATH% wait-for-device
 %ADBPATH% reboot bootloader
 goto main
 
