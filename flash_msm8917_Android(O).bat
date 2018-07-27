@@ -158,7 +158,7 @@ goto selectDownload
 :selectDownload
 
 :: Ìí¼Ó user °æ±¾½âËø fastboot ÃüÁî
-fastboot oem enable-unlock-once
+%FASTBOOTPATH% oem enable-unlock-once
 
 @echo off
 IF {%~n1}=={} (goto flash_all) 
