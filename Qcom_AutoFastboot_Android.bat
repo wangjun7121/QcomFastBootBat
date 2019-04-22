@@ -43,7 +43,7 @@
 @echo off
 
 :: 安装目录设置
-Set installPath=C:\C_FastBoot_Flash8917\
+Set installPath=C:\Qcom_AutoFastboot_Android\
 
 :::::::::::::::::::::::::::::::::
 :: 使用到的绿色工具
