@@ -1,6 +1,6 @@
 Windows Registry Editor Version 5.00
 
-[HKEY_CLASSES_ROOT\*\shell\flash8917]
-@="flash_msm8917_Android(O).bat"
-[HKEY_CLASSES_ROOT\*\shell\flash8917\command]
-@="\"C:\\C_FastBoot_Flash8917\\flash_msm8917_Android(O).bat\" \"%1\""
+[HKEY_CLASSES_ROOT\*\shell\flashqcom]
+@="Qcom_AutoFastboot_Android.bat"
+[HKEY_CLASSES_ROOT\*\shell\flashqcom\command]
+@="\"C:\\C_FastBoot_Flash8917\\Qcom_AutoFastboot_Android.bat\" \"%1\""
