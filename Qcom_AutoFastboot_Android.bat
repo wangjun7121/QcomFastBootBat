@@ -63,7 +63,8 @@ Set GitPATH=%installPath%PortableGit\bin\git.exe
 
 :: 注：右键执行时，默认当前目录为右键当前目录
 :::::::::::::::::::::::::::::::::
-
+::%GitPATH% remote add origin https://github.com/wangjun7121/QcomFastBootBat.git
+%GitPATH% pull --rebase origin master
 
 @echo off
 ::CHOICE /T 10 /C:yn  /D n /M "是否通过 adb 进入 fastboot?"
