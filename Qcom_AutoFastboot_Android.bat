@@ -59,6 +59,7 @@ Set ADBPATH=%installPath%ADB\adb.exe
 Set FASTBOOTPATH=%installPath%ADB\fastboot.exe
 Set UZIPPATH=%installPath%7-Zip\App\ProgramFiles64\7z.exe
 Set MD5PATH=%installPath%Tools\md5sum.exe
+Set GitPATH=%installPath%PortableGit\bin\git.exe
 
 :: 注：右键执行时，默认当前目录为右键当前目录
 :::::::::::::::::::::::::::::::::
