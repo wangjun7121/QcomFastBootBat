@@ -63,7 +63,12 @@ Set GitPATH=%installPath%PortableGit\bin\git.exe
 
 :: 注：右键执行时，默认当前目录为右键当前目录
 :::::::::::::::::::::::::::::::::
+
+:: git 自动同步命令：
+::      初始同步 git clone https://github.com/wangjun7121/QcomFastBootBat.git
 ::%GitPATH% remote add origin https://github.com/wangjun7121/QcomFastBootBat.git
+%GitPATH% checkout .
+%GitPATH% clean -df
 %GitPATH% pull --rebase origin master
 
 @echo off
