@@ -1,47 +1,47 @@
 
-:: åˆ‡æ¢å‘½ä»¤è¡Œçª—å£æ”¯æŒ utf8 
-chcp 65001
+:: ÇĞ»»ÃüÁîĞĞ´°¿ÚÖ§³Ö utf8 
+::chcp 65001
 
-:: chcp 936 é»˜è®¤ GBK
-:: chcp 437 ç¾å›½è‹±è¯­
+:: chcp 936 Ä¬ÈÏ GBK
+:: chcp 437 ÃÀ¹úÓ¢Óï
 
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-@echo ä½¿ç”¨æ–¹æ³•ï¼š
-@echo      1. ç›´æ¥åŒå‡»è„šæœ¬,ä¸‹è½½ imagePath æŒ‡å®šè·¯å¾„ä¸­çš„ç‰ˆæœ¬ï¼Œé»˜è®¤ä¸ºå½“å‰è·¯å¾„
+@echo Ê¹ÓÃ·½·¨£º
+@echo      1. Ö±½ÓË«»÷½Å±¾,ÏÂÔØ imagePath Ö¸¶¨Â·¾¶ÖĞµÄ°æ±¾£¬Ä¬ÈÏÎªµ±Ç°Â·¾¶
 @echo.
-@echo      2. ç›´æ¥æ‹–æ”¾åˆ°è„šæœ¬ä¸Šä¸‹è½½
-@echo      3. åœ¨æ‰€éœ€ä¸‹è½½é•œåƒä¸Šå³é”®ï¼Œé€‰æ‹© Qcom_AutoFastboot_Android
-@echo             2/3 è¡Œä¸ºï¼š
-@echo              1^> apk åç¼€ï¼Œå¯é€‰æ‹©å®‰è£…æˆ–è§£å‹(æœåŠ¡å™¨é‡Šæ”¾é•œåƒ)
-@echo              2^> å…¶ä»–åç¼€ï¼Œè¿›è¡Œä¸‹è½½
+@echo      2. Ö±½ÓÍÏ·Åµ½½Å±¾ÉÏÏÂÔØ
+@echo      3. ÔÚËùĞèÏÂÔØ¾µÏñÉÏÓÒ¼ü£¬Ñ¡Ôñ Qcom_AutoFastboot_Android
+@echo             2/3 ĞĞÎª£º
+@echo              1^> apk ºó×º£¬¿ÉÑ¡Ôñ°²×°»ò½âÑ¹(·şÎñÆ÷ÊÍ·Å¾µÏñ)
+@echo              2^> ÆäËûºó×º£¬½øĞĞÏÂÔØ
 @echo.
-@echo æš‚æ”¯æŒå¹³å°ï¼š8917/8937
+@echo ÔİÖ§³ÖÆ½Ì¨£º8917/8937
 @echo.
 :: 
-:: æ›´æ–°è®°å½•ï¼š(æŒ‰éœ€æ›´æ–°,æœ‰æƒ³æ³•å¯äº¤æµå®šåˆ¶ ( ^_^ ) wangjun
-::      æ·»åŠ  fsg æ–°å¢åˆ†åŒºä¸‹è½½å‰æ“¦é™¤å‘½ä»¤                               --20171120
-::      æ·»åŠ åˆ°å³é”®æ·»åŠ /å–æ¶ˆ reg          
-::      æ·»åŠ  asusfw.img/logo.bin                                      --20171204
-::      æ·»åŠ  é‡å¯æ—¶å¯åŠ¨æ¨¡å¼é€‰æ‹©ï¼Œé»˜è®¤ä¸ºè¿›å®‰å“ï¼Œè¾“å…¥ f è¿›å…¥ fastboot   --20171221
-::      æ·»åŠ  é€šè¿‡ adb è¿›å…¥ fastboot è¿›è¡Œä¸‹è½½                          --20171223
-::      æ·»åŠ  APK é€šè¿‡ adb å®‰è£…                                        --20180103
-::      æ·»åŠ  user ç‰ˆæœ¬è§£é” fastboot å‘½ä»¤                              --20180104
-::      æ·»åŠ æœåŠ¡å™¨é‡Šæ”¾çš„ apk å³é”®è§£å‹åŠŸèƒ½                             --20180107
-::      æ·»åŠ  vendor.img                                               --20180108
-::      æ·»åŠ  md5 æ ¡éªŒåŠŸèƒ½                                             --20180115
-::      é€‚é…ç§»è¿œé…ç½®                                                  --20190422
-:: å…³äº Bug: è‡ªè¡Œè§£å†³
+:: ¸üĞÂ¼ÇÂ¼£º(°´Ğè¸üĞÂ,ÓĞÏë·¨¿É½»Á÷¶¨ÖÆ ( ^_^ ) wangjun
+::      Ìí¼Ó fsg ĞÂÔö·ÖÇøÏÂÔØÇ°²Á³ıÃüÁî                               --20171120
+::      Ìí¼Óµ½ÓÒ¼üÌí¼Ó/È¡Ïû reg          
+::      Ìí¼Ó asusfw.img/logo.bin                                      --20171204
+::      Ìí¼Ó ÖØÆôÊ±Æô¶¯Ä£Ê½Ñ¡Ôñ£¬Ä¬ÈÏÎª½ø°²×¿£¬ÊäÈë f ½øÈë fastboot   --20171221
+::      Ìí¼Ó Í¨¹ı adb ½øÈë fastboot ½øĞĞÏÂÔØ                          --20171223
+::      Ìí¼Ó APK Í¨¹ı adb °²×°                                        --20180103
+::      Ìí¼Ó user °æ±¾½âËø fastboot ÃüÁî                              --20180104
+::      Ìí¼Ó·şÎñÆ÷ÊÍ·ÅµÄ apk ÓÒ¼ü½âÑ¹¹¦ÄÜ                             --20180107
+::      Ìí¼Ó vendor.img                                               --20180108
+::      Ìí¼Ó md5 Ğ£Ñé¹¦ÄÜ                                             --20180115
+::      ÊÊÅäÒÆÔ¶ÅäÖÃ                                                  --20190422
+:: ¹ØÓÚ Bug: ×ÔĞĞ½â¾ö
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:: æ·»åŠ æ–°åˆ†åŒºé•œåƒæ­¥éª¤ï¼š(ä»¥ asusfw.img ä¸ºä¾‹)
-::      1. åœ¨æ ¹æ®é€‰æ‹©åˆ·å…¥åˆ†åŒºä¸­æ·»åŠ ä¸€è¡Œ
+:: Ìí¼ÓĞÂ·ÖÇø¾µÏñ²½Öè£º(ÒÔ asusfw.img ÎªÀı)
+::      1. ÔÚ¸ù¾İÑ¡ÔñË¢Èë·ÖÇøÖĞÌí¼ÓÒ»ĞĞ
 ::          IF {%~n1}=={asusfw} (goto asusfw) 
-::      2. åœ¨ flash_all æ ‡ç­¾ä¸­æ·»åŠ ä¸€è¡Œ
+::      2. ÔÚ flash_all ±êÇ©ÖĞÌí¼ÓÒ»ĞĞ
 ::          fastboot flash asusfw asusfw.img
-::      3. åˆ·å…¥éƒ¨åˆ†é•œåƒä½ç½®ï¼Œæ·»åŠ æ–°æ ‡å·ï¼š
+::      3. Ë¢Èë²¿·Ö¾µÏñÎ»ÖÃ£¬Ìí¼ÓĞÂ±êºÅ£º
 ::              :asusfw
 ::              @echo on
 ::              fastboot flash asusfw asusfw.img
@@ -49,11 +49,11 @@ chcp 65001
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @echo off
 
-:: å®‰è£…ç›®å½•è®¾ç½®
+:: °²×°Ä¿Â¼ÉèÖÃ
 Set installPath=C:\Qcom_AutoFastboot_Android\
 
 :::::::::::::::::::::::::::::::::
-:: ä½¿ç”¨åˆ°çš„ç»¿è‰²å·¥å…·
+:: Ê¹ÓÃµ½µÄÂÌÉ«¹¤¾ß
 
 Set ADBPATH=%installPath%ADB\adb.exe
 Set FASTBOOTPATH=%installPath%ADB\fastboot.exe
@@ -61,31 +61,31 @@ Set UZIPPATH=%installPath%7-Zip\App\ProgramFiles64\7z.exe
 Set MD5PATH=%installPath%Tools\md5sum.exe
 Set GitPATH=%installPath%PortableGit\bin\git.exe
 
-:: æ³¨ï¼šå³é”®æ‰§è¡Œæ—¶ï¼Œé»˜è®¤å½“å‰ç›®å½•ä¸ºå³é”®å½“å‰ç›®å½•
+:: ×¢£ºÓÒ¼üÖ´ĞĞÊ±£¬Ä¬ÈÏµ±Ç°Ä¿Â¼ÎªÓÒ¼üµ±Ç°Ä¿Â¼
 :::::::::::::::::::::::::::::::::
 
-:: git è‡ªåŠ¨åŒæ­¥å‘½ä»¤ï¼š
-::      åˆå§‹åŒæ­¥ git clone https://github.com/wangjun7121/QcomFastBootBat.git
+:: git ×Ô¶¯Í¬²½ÃüÁî£º
+:: ³õÊ¼Í¬²½ git clone https://github.com/wangjun7121/QcomFastBootBat.git
 ::%GitPATH% remote add origin https://github.com/wangjun7121/QcomFastBootBat.git
-%GitPATH% checkout .
-%GitPATH% clean -df
-%GitPATH% pull --rebase origin master
+::%GitPATH% checkout .
+::%GitPATH% clean -df
+::%GitPATH% pull --rebase origin master
 
 @echo off
-::CHOICE /T 10 /C:yn  /D n /M "æ˜¯å¦é€šè¿‡ adb è¿›å…¥ fastboot?"
+::CHOICE /T 10 /C:yn  /D n /M "ÊÇ·ñÍ¨¹ı adb ½øÈë fastboot?"
 ::If ErrorLevel 2 goto main
 ::If ErrorLevel 1 goto adbfastboot
 
-:: åŒ¹é…åç¼€ä¸º APK çš„æƒ…å†µ
-::  1. é€šè¿‡ adb å®‰è£… 
-::  2. ä¸ºæœåŠ¡å™¨é‡Šæ”¾çš„æ–‡ä»¶ï¼Œè¿›è¡ŒäºŒæ¬¡è§£å‹ 
+:: Æ¥Åäºó×ºÎª APK µÄÇé¿ö
+::  1. Í¨¹ı adb °²×° 
+::  2. Îª·şÎñÆ÷ÊÍ·ÅµÄÎÄ¼ş£¬½øĞĞ¶ş´Î½âÑ¹ 
 IF {%~x1}=={.apk} (goto handleApk) 
 
 
 
-:: åŒ¹é…å…¶ä»–åç¼€é•œåƒçš„æƒ…å†µï¼šé€šè¿‡ adb/fastboot ä¸‹è½½
+:: Æ¥ÅäÆäËûºó×º¾µÏñµÄÇé¿ö£ºÍ¨¹ı adb/fastboot ÏÂÔØ
 :handleOthers
-set /p bootChoice="ç›´æ¥å›è½¦ä¸‹è½½ æˆ–è¾“å…¥ a é€šè¿‡ adb è¿›å…¥ fastboot ä¸‹è½½: "
+set /p bootChoice="Ö±½Ó»Ø³µÏÂÔØ »òÊäÈë a Í¨¹ı adb ½øÈë fastboot ÏÂÔØ: "
 if /I "%bootChoice%" EQU "F" goto adbfastboot 
 if "%bootChoice%"=="" goto main
 :adbfastboot
@@ -97,9 +97,9 @@ if "%bootChoice%"=="" goto main
 goto main
 
 
-:: å¤„ç† apk å®‰è£…çš„æƒ…å†µ
+:: ´¦Àí apk °²×°µÄÇé¿ö
 :handleApk
-set /p bootChoice="ç›´æ¥å›è½¦å®‰è£… æˆ–è¾“å…¥ x è§£å‹é‡Šæ”¾é•œåƒ: "
+set /p bootChoice="Ö±½Ó»Ø³µ°²×° »òÊäÈë x ½âÑ¹ÊÍ·Å¾µÏñ: "
 if /I "%bootChoice%" EQU "X" goto unzipApk 
 if "%bootChoice%"=="" goto adbinstall
 
@@ -110,31 +110,31 @@ if "%bootChoice%"=="" goto adbinstall
 pause
 goto end
 
-:: å¤„ç† apk æœåŠ¡å™¨é‡Šæ”¾çš„é•œåƒ
+:: ´¦Àí apk ·şÎñÆ÷ÊÍ·ÅµÄ¾µÏñ
 :unzipApk
-:: ä¼ å…¥å‚æ•°æ–‡ä»¶åå¸¦åç¼€
+:: ´«Èë²ÎÊıÎÄ¼şÃû´øºó×º
 Set argOneFileName=%~nx1
 
 
-:: åˆ‡æ¢åˆ° apk æ‰€åœ¨ç›®å½•
+:: ÇĞ»»µ½ apk ËùÔÚÄ¿Â¼
 cd /d  %~dp1
 
-:: è§£å‹ *.apk åˆ°ç›®å½•ä¸­
+:: ½âÑ¹ *.apk µ½Ä¿Â¼ÖĞ
 %UZIPPATH% x %argOneFileName% -aoa -o%argOneFileName:~0,-11%
 cd /d %argOneFileName:~0,-11%
-:: è§£æ *.gz å½“å‰è·¯å¾„ 
+:: ½âÎö *.gz µ±Ç°Â·¾¶ 
 %UZIPPATH% x %argOneFileName:~0,-4% -aoa
-:: è§£æ *.tar å½“å‰è·¯å¾„ 
+:: ½âÎö *.tar µ±Ç°Â·¾¶ 
 %UZIPPATH% x %argOneFileName:~0,-7% -aoa
 
 pause
 goto end
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:: å¤„ç†å…¶ä»–åç¼€é•œåƒï¼Œè¿›è¡ŒåŒ¹é…ä¸‹è½½
+:: ´¦ÀíÆäËûºó×º¾µÏñ£¬½øĞĞÆ¥ÅäÏÂÔØ
 :main
 
-:: ç‰ˆæœ¬æ ¡éªŒå•æ¡
+:: °æ±¾Ğ£Ñéµ¥Ìõ
 @echo off
 @echo ************************
 @echo   Start md5 check . . .
@@ -167,19 +167,19 @@ goto selectDownload
 
 
 ::::::::::::::::::::::::::::::::::::::::::
-:: å…¼å®¹ä¹‹å‰è„šæœ¬åˆ·å…¥æ‰€æœ‰åˆ†åŒº
+:: ¼æÈİÖ®Ç°½Å±¾Ë¢ÈëËùÓĞ·ÖÇø
 ::::::::::::::::::::::::::::::::::::::::::
-:: ç›´æ¥ç‚¹å‡» 
+:: Ö±½Óµã»÷ 
 :selectDownload
 
-:: æ·»åŠ  user ç‰ˆæœ¬è§£é” fastboot å‘½ä»¤
+:: Ìí¼Ó user °æ±¾½âËø fastboot ÃüÁî
 ::%FASTBOOTPATH% oem enable-unlock-once
 
 @echo off
 IF {%~n1}=={} (goto flash_all) 
 
 ::::::::::::::::::::::::::::::::::::::::::
-:: æ ¹æ®ä¼ å…¥é•œåƒåï¼ˆå»åç¼€ï¼‰é€‰æ‹©åˆ·å…¥åˆ†åŒº
+:: ¸ù¾İ´«Èë¾µÏñÃû£¨È¥ºó×º£©Ñ¡ÔñË¢Èë·ÖÇø
 ::::::::::::::::::::::::::::::::::::::::::
 @echo off
 
@@ -207,7 +207,7 @@ IF {%~n1}=={mdtp} (goto mdtp)
 IF {%~n1}=={APD} (goto APD) 
 IF {%~n1}=={splash} (goto splash) 
 
-:: %~n1 å˜é‡ 1 æ–‡ä»¶åæ— åç¼€
+:: %~n1 ±äÁ¿ 1 ÎÄ¼şÃûÎŞºó×º
 echo %~n1|findstr "^fs_image.tar" >nul
 if %errorlevel% equ 0 (
 goto fs_image.tar.gz.mbn
@@ -222,18 +222,18 @@ IF {%~n1}=={dp_MSA_signed} (goto msadp)
 
 goto ChoiceBootMode
 ::::::::::::::::::::::::::::::::::::::::::
-:: è¿›è¡Œ fastboot åˆ·å…¥é•œåƒ
+:: ½øĞĞ fastboot Ë¢Èë¾µÏñ
 ::::::::::::::::::::::::::::::::::::::::::
 
 :flash_all
 ::::::::::::::::::::::::::::::::
-::ä¿®æ”¹ä¸ºç‰ˆæœ¬é€šé“æ˜ å°„çš„åˆ†åŒº
-:: imgePath å»æ‰ä¸‹è¡Œæ³¨é‡ŠæŒ‡å®šç‰ˆæœ¬é€šé“
+::ĞŞ¸ÄÎª°æ±¾Í¨µÀÓ³ÉäµÄ·ÖÇø
+:: imgePath È¥µôÏÂĞĞ×¢ÊÍÖ¸¶¨°æ±¾Í¨µÀ
 Set imagePath=.\
 cd /d %imagePath%
 ::::::::::::::::::::::::::::::::
 
-:: ç‰ˆæœ¬ md5 æ ¡éªŒ
+:: °æ±¾ md5 Ğ£Ñé
 @echo off
 @echo ************************
 @echo   Start md5 check . . .
@@ -320,10 +320,10 @@ if exist "fs_image.tar.gz.mbn.8937.full.band.img" (
 goto ChoiceBootMode
 
 :::::::::::::::::::::::
-::: åˆ·å…¥éƒ¨åˆ†é•œåƒ
+::: Ë¢Èë²¿·Ö¾µÏñ
 :::::::::::::::::::::::
 
-::  %~f1 å°† %1 æ‰©å……åˆ°ä¸€ä¸ªå®Œå…¨åˆæ ¼çš„è·¯å¾„å
+::  %~f1 ½« %1 À©³äµ½Ò»¸öÍêÈ«ºÏ¸ñµÄÂ·¾¶Ãû
 
 :apdp
 @echo on
@@ -479,7 +479,7 @@ goto ChoiceBootMode
 :ChoiceBootMode
 @echo off
 
-set /p keyChoice="ç›´æ¥å›è½¦é‡å¯è¿›å…¥ Androidï¼Œè¾“å…¥ F é‡å¯è¿›å…¥ fastboot: "
+set /p keyChoice="Ö±½Ó»Ø³µÖØÆô½øÈë Android£¬ÊäÈë F ÖØÆô½øÈë fastboot: "
 if /I "%keyChoice%" EQU "F" goto rebootfastboot 
 if "%keyChoice%"=="" goto rebootandroid
 
