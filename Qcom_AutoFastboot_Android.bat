@@ -184,7 +184,7 @@ IF {%~n1}=={} (goto flash_all)
 @echo off
 
 
-
+:: %~n1: 参数 1 去除后缀
 IF {%~n1}=={cmnlib_30} (goto cmnlib_30) 
 IF {%~n1}=={cmnlib64_30} (goto cmnlib64_30) 
 IF {%~n1}=={keymaster64} (goto keymaster64) 
@@ -206,6 +206,10 @@ IF {%~n1}=={cache} (goto cache)
 IF {%~n1}=={mdtp} (goto mdtp) 
 IF {%~n1}=={APD} (goto APD) 
 IF {%~n1}=={splash} (goto splash) 
+IF {%~n1}=={dtbo} (goto dtbo) 
+IF {%~n1}=={vbmeta} (goto vbmeta) 
+IF {%~n1}=={lksecapp} (goto lksecapp) 
+IF {%~n1}=={km4} (goto km4) 
 
 :: %~n1 变量 1 文件名无后缀
 echo %~n1|findstr "^fs_image.tar" >nul
@@ -301,6 +305,18 @@ goto flash_all_start
 %FASTBOOTPATH% erase modemst1
 %FASTBOOTPATH% erase modemst2
 %FASTBOOTPATH% erase fsg
+
+%FASTBOOTPATH% flash vbmeta vbmeta.img
+%FASTBOOTPATH% flash vbmetabak vbmeta.img
+
+%FASTBOOTPATH% flash dtbo dtbo.img
+%FASTBOOTPATH% flash dtbobak dtbo.img
+
+%FASTBOOTPATH% flash lksecapp lksecapp.mbn
+%FASTBOOTPATH% flash lksecappbak lksecapp.mbn
+
+%FASTBOOTPATH% flash keymaster km4.mbn
+%FASTBOOTPATH% flash keymasterbak km4.mbn
 
 if exist "fs_image.tar.gz.mbn.8917.full.band.img" (
 %FASTBOOTPATH% flash fsg fs_image.tar.gz.mbn.8917.full.band.img
@@ -471,9 +487,30 @@ goto ChoiceBootMode
 %FASTBOOTPATH% flash splash "%~f1"
 goto ChoiceBootMode
 
+:dtbo
+@echo on
+%FASTBOOTPATH% flash dtbo "%~f1"
+%FASTBOOTPATH% flash dtbobak "%~f1"
+goto ChoiceBootMode
+
+:vbmeta
+@echo on
+%FASTBOOTPATH% flash vbmeta "%~f1"
+%FASTBOOTPATH% flash vbmetabak "%~f1"
+goto ChoiceBootMode
+
+:lksecapp
+@echo on
+%FASTBOOTPATH% flash lksecapp "%~f1"
+%FASTBOOTPATH% flash lksecappbak "%~f1"
+goto ChoiceBootMode
 
 
-
+:km4
+@echo on
+%FASTBOOTPATH% flash keymaster "%~f1"
+%FASTBOOTPATH% flash keymasterbak "%~f1"
+goto ChoiceBootMode
 
 :::::::::::::::::::::::::::::::::::::: ChoiceBootMode ::::::::::::::::::::::::::::::
 :ChoiceBootMode
