@@ -3,3 +3,8 @@ Windows Registry Editor Version 5.00
 [-HKEY_CLASSES_ROOT\*\shell\flashqcom]  
 
 [-HKEY_CLASSES_ROOT\*\shell\flashqcom\command] 
+
+[-HKEY_CLASSES_ROOT\Directory\shell\flashqcomdir]
+
+[-HKEY_CLASSES_ROOT\Directory\shell\flashqcomdir\command]
+

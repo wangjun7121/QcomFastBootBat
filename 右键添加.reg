@@ -4,3 +4,9 @@ Windows Registry Editor Version 5.00
 @="Qcom_AutoFastboot_Android.bat"
 [HKEY_CLASSES_ROOT\*\shell\flashqcom\command]
 @="\"C:\\Qcom_AutoFastboot_Android\\Qcom_AutoFastboot_Android.bat\" \"%1\""
+
+[HKEY_CLASSES_ROOT\Directory\shell\flashqcomdir]
+@="Qcom_AutoFastboot_Android.bat"
+
+[HKEY_CLASSES_ROOT\Directory\shell\flashqcomdir\command]
+@="\"C:\\Qcom_AutoFastboot_Android\\FlashAll.bat\" \"%l\""
