@@ -172,10 +172,24 @@ goto selectDownload
 :: 直接点击 
 :selectDownload
 
+@echo off
+:: 判断当前目录下是否有 AB 分区相关镜像
+Set "enableABPartition="
+if exist "abl.elf" (
+Set "enableABPartition=Yes"
+) else (
+
+if not exist "recovery.img" (
+Set "enableABPartition=Yes"
+)
+
+)
+
+
 :: 添加 user 版本解锁 fastboot 命令
 ::%FASTBOOTPATH% oem enable-unlock-once
 
-@echo off
+
 IF {%~n1}=={} (goto flash_all) 
 
 ::::::::::::::::::::::::::::::::::::::::::
@@ -222,7 +236,15 @@ IF {%~n1}=={logo} (goto logo)
 IF {%~n1}=={vendor} (goto vendor) 
 IF {%~n1}=={dp_AP_signed} (goto apdp) 
 IF {%~n1}=={dp_MSA_signed} (goto msadp) 
-
+IF {%~n1}=={abl} (goto abl) 
+IF {%~n1}=={xbl} (goto xbl) 
+IF {%~n1}=={hyp} (goto hyp) 
+IF {%~n1}=={pmic} (goto pmic) 
+IF {%~n1}=={cmnlib} (goto cmnlib) 
+IF {%~n1}=={cmnlib64} (goto cmnlib64) 
+IF {%~n1}=={mdtpsecapp} (goto mdtpsecapp) 
+IF {%~n1}=={BTFM} (goto BTFM) 
+IF {%~n1}=={storsec} (goto storsec) 
 
 goto ChoiceBootMode
 ::::::::::::::::::::::::::::::::::::::::::
@@ -340,6 +362,97 @@ goto ChoiceBootMode
 :::::::::::::::::::::::
 
 ::  %~f1 将 %1 扩充到一个完全合格的路径名
+:storsec
+@echo on
+if "%enableABPartition%"=="" (
+%FASTBOOTPATH% flash storsec "%~f1"
+) else (
+%FASTBOOTPATH% flash storsec "%~f1"
+)
+goto ChoiceBootMode
+
+:BTFM
+@echo on
+if "%enableABPartition%"=="" (
+%FASTBOOTPATH% flash bluetooth_a "%~f1"
+%FASTBOOTPATH% flash bluetooth_b "%~f1"
+) else (
+%FASTBOOTPATH% flash bluetooth_a "%~f1"
+%FASTBOOTPATH% flash bluetooth_b "%~f1"
+)
+goto ChoiceBootMode
+
+:mdtpsecapp
+@echo on
+if "%enableABPartition%"=="" (
+%FASTBOOTPATH% flash mdtpsecapp_a "%~f1"
+%FASTBOOTPATH% flash mdtpsecapp_b "%~f1"
+) else (
+%FASTBOOTPATH% flash mdtpsecapp_a "%~f1"
+%FASTBOOTPATH% flash mdtpsecapp_b "%~f1"
+)
+goto ChoiceBootMode
+
+:cmnlib
+@echo on
+if "%enableABPartition%"=="" (
+%FASTBOOTPATH% flash cmnlib "%~f1"
+%FASTBOOTPATH% flash cmnlibbak "%~f1"
+) else (
+%FASTBOOTPATH% flash cmnlib_a "%~f1"
+%FASTBOOTPATH% flash cmnlib_b "%~f1"
+)
+goto ChoiceBootMode
+
+:cmnlib64
+@echo on
+if "%enableABPartition%"=="" (
+%FASTBOOTPATH% flash cmnlib64 "%~f1"
+%FASTBOOTPATH% flash cmnlib64bak "%~f1"
+) else (
+%FASTBOOTPATH% flash cmnlib64_a "%~f1"
+%FASTBOOTPATH% flash cmnlib64_b "%~f1"
+)
+goto ChoiceBootMode
+
+:pmic
+@echo on
+if "%enableABPartition%"=="" (
+%FASTBOOTPATH% flash pmic "%~f1"
+) else (
+%FASTBOOTPATH% flash pmic_a "%~f1"
+%FASTBOOTPATH% flash pmic_b "%~f1"
+)
+
+:hyp
+@echo on
+if "%enableABPartition%"=="" (
+%FASTBOOTPATH% flash hyp "%~f1"
+) else (
+%FASTBOOTPATH% flash hyp_a "%~f1"
+%FASTBOOTPATH% flash hyp_b "%~f1"
+)
+
+
+:xbl
+@echo on
+if "%enableABPartition%"=="" (
+%FASTBOOTPATH% flash xbl "%~f1"
+) else (
+%FASTBOOTPATH% flash xbl_a "%~f1"
+%FASTBOOTPATH% flash xbl_b "%~f1"
+)
+
+:abl
+@echo on
+if "%enableABPartition%"=="" (
+%FASTBOOTPATH% flash abl "%~f1"
+) else (
+%FASTBOOTPATH% flash abl_a "%~f1"
+%FASTBOOTPATH% flash abl_b "%~f1"
+)
+
+goto ChoiceBootMode
 
 :apdp
 @echo on
@@ -353,7 +466,13 @@ goto ChoiceBootMode
 
 :vendor
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash vendor "%~f1"
+) else (
+%FASTBOOTPATH% flash vendor_a "%~f1"
+%FASTBOOTPATH% flash vendor_b "%~f1"
+)
+
 goto ChoiceBootMode
 
 :logo
@@ -405,7 +524,12 @@ goto ChoiceBootMode
 
 :NON-HLOS
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash modem "%~f1"
+) else (
+%FASTBOOTPATH% flash modem_a "%~f1"
+%FASTBOOTPATH% flash modem_b "%~f1"
+)
 goto ChoiceBootMode
 
 :sbl1
@@ -416,18 +540,35 @@ goto ChoiceBootMode
 
 :rpm
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash rpm "%~f1"
 %FASTBOOTPATH% flash rpmbak "%~f1"
+) else (
+%FASTBOOTPATH% flash rpm_a "%~f1"
+%FASTBOOTPATH% flash rpm_b "%~f1"
+)
 goto ChoiceBootMode
 
 :tz
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash tz "%~f1"
 %FASTBOOTPATH% flash tzbak "%~f1"
+) else (
+%FASTBOOTPATH% flash tz_a "%~f1"
+%FASTBOOTPATH% flash tz_b "%~f1"
+)
+
 goto ChoiceBootMode
+
 :devcfg
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash devcfg "%~f1"
 %FASTBOOTPATH% flash devcfgbak "%~f1"
+) else (
+%FASTBOOTPATH% flash devcfg_a "%~f1"
+%FASTBOOTPATH% flash devcfg_b "%~f1"
+)
 goto ChoiceBootMode
 
 :sec
@@ -444,12 +585,22 @@ goto ChoiceBootMode
 :::::::::::::::::::: AP 
 :boot
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash boot "%~f1"
+) else (
+%FASTBOOTPATH% flash boot_a "%~f1"
+%FASTBOOTPATH% flash boot_b "%~f1"
+)
 goto ChoiceBootMode
 
 :system
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash system "%~f1"
+) else (
+%FASTBOOTPATH% flash system_a "%~f1"
+%FASTBOOTPATH% flash system_b "%~f1"
+)
 goto ChoiceBootMode
 
 :userdata
@@ -474,7 +625,12 @@ goto ChoiceBootMode
 
 :mdtp
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash mdtp "%~f1"
+) else (
+%FASTBOOTPATH% flash mdtp_a "%~f1"
+%FASTBOOTPATH% flash mdtp_b "%~f1"
+)
 goto ChoiceBootMode
 
 :APD
@@ -508,8 +664,13 @@ goto ChoiceBootMode
 
 :km4
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash keymaster "%~f1"
 %FASTBOOTPATH% flash keymasterbak "%~f1"
+) else (
+%FASTBOOTPATH% flash keymaster_a "%~f1"
+%FASTBOOTPATH% flash keymaster_b "%~f1"
+)
 goto ChoiceBootMode
 
 :::::::::::::::::::::::::::::::::::::: ChoiceBootMode ::::::::::::::::::::::::::::::

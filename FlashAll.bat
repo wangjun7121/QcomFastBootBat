@@ -23,14 +23,28 @@ set /p bootChoice="直接回车下载 或输入 a 通过 adb 进入 fastboot 下载: "
 if /I "%bootChoice%" EQU "F" goto adbfastboot 
 if "%bootChoice%"=="" goto main
 :adbfastboot
-
+@echo on
 %ADBPATH% wait-for-device
 %ADBPATH% root
 %ADBPATH% wait-for-device
 %ADBPATH% reboot bootloader
 goto main
 
+
 :main
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: 判断是否是 AB 分区
+
+:: Android9 
+if exist "abl.elf" (
+goto enableAB
+)
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Android 8:
+:disableAB
 
 if exist "emmc_appsboot.mbn" (
 %FASTBOOTPATH% flash aboot emmc_appsboot.mbn
@@ -69,9 +83,7 @@ if exist "mdtp.img" (
 %FASTBOOTPATH% flash mdtp mdtp.img
 )
 
-if exist "cache.img" (
-%FASTBOOTPATH% flash cache cache.img
-)
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :: Android 9.0 增加 
@@ -93,6 +105,33 @@ if exist "dtbo.img" (
 if exist "NON-HLOS.bin" (
 %FASTBOOTPATH% flash modem NON-HLOS.bin
 )
+
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Android 9 带 AB
+:enableAB
+if exist "abl.elf" (
+%FASTBOOTPATH% flash abl_a abl.elf
+%FASTBOOTPATH% flash abl_b abl.elf
+)
+
+if exist "boot.img" (
+%FASTBOOTPATH% flash boot_a boot.img
+%FASTBOOTPATH% flash boot_b boot.img
+)
+
+if exist "system.img" (
+%FASTBOOTPATH% flash system_a system.img
+%FASTBOOTPATH% flash system_b system.img
+)
+
+if exist "vendor.img" (
+%FASTBOOTPATH% flash vendor_a vendor.img
+%FASTBOOTPATH% flash vendor_b vendor.img
+)
+
+
 
 
 :::::::::::::::::::::::::::::::::::::: ChoiceBootMode ::::::::::::::::::::::::::::::
