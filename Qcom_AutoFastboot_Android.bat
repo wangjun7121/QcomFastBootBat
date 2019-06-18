@@ -185,6 +185,8 @@ Set "enableABPartition=Yes"
 
 )
 
+::echo %enableABPartition%
+::pause 
 
 :: ÃÌº” user ∞Ê±æΩ‚À¯ fastboot √¸¡Ó
 ::%FASTBOOTPATH% oem enable-unlock-once
@@ -495,20 +497,35 @@ goto ChoiceBootMode
 
 :cmnlib_30
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash cmnlib "%~f1"
 %FASTBOOTPATH% flash cmnlibbak "%~f1"
+) else (
+%FASTBOOTPATH% flash cmnlib_a "%~f1"
+%FASTBOOTPATH% flash cmnlib_b "%~f1"
+)
 goto ChoiceBootMode
 
 :cmnlib64_30
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash cmnlib64 "%~f1"
 %FASTBOOTPATH% flash cmnlib64bak "%~f1"
+) else (
+%FASTBOOTPATH% flash cmnlib64_a "%~f1"
+%FASTBOOTPATH% flash cmnlib64_b "%~f1"
+)
 goto ChoiceBootMode
 
 :keymaster64
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash keymaster "%~f1"
 %FASTBOOTPATH% flash keymasterbak "%~f1"
+) else (
+%FASTBOOTPATH% flash keymaster_a "%~f1"
+%FASTBOOTPATH% flash keymaster_b "%~f1"
+)
 goto ChoiceBootMode
 
 :::::::::::::::::::
@@ -534,8 +551,13 @@ goto ChoiceBootMode
 
 :sbl1
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash sbl1 "%~f1"
 %FASTBOOTPATH% flash sbl1bak "%~f1"
+) else (
+%FASTBOOTPATH% flash sbl1_a "%~f1"
+%FASTBOOTPATH% flash sbl1_b "%~f1"
+)
 goto ChoiceBootMode
 
 :rpm
@@ -578,8 +600,13 @@ goto ChoiceBootMode
 
 :emmc_appsboot
 @echo on
+if "%enableABPartition%"=="" (
 %FASTBOOTPATH% flash aboot "%~f1"
 %FASTBOOTPATH% flash abootbak "%~f1"
+) else (
+%FASTBOOTPATH% flash aboot_a "%~f1"
+%FASTBOOTPATH% flash aboot_b "%~f1"
+)
 goto ChoiceBootMode
 
 :::::::::::::::::::: AP 
