@@ -176,15 +176,19 @@ goto selectDownload
 @echo off
 :: 判断当前目录下是否有 AB 分区相关镜像
 Set "enableABPartition="
+
 if exist "abl.elf" (
 Set "enableABPartition=Yes"
-) else (
-
-:: if not exist "recovery.img" (
-:: Set "enableABPartition=Yes"
-:: )
-
 )
+::if exist "abl.elf" (
+::Set "enableABPartition=Yes"
+::) else (
+::
+::if not exist "recovery.img" (
+::Set "enableABPartition=Yes"
+::)
+::
+::)
 
 ::echo %enableABPartition%
 ::pause 
