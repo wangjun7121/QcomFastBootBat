@@ -16,7 +16,8 @@
 @echo              1^> apk 后缀，可选择安装或解压(服务器释放镜像)
 @echo              2^> 其他后缀，进行下载
 @echo.
-@echo 暂支持平台：8917/8937
+@echo  AB 分区判断规则：(默认不开)
+@echo       如果目录存在 abl.elf  则 AB 
 @echo.
 :: 
 :: 更新记录：(按需更新,有想法可交流定制 ( ^_^ ) wangjun
@@ -179,9 +180,9 @@ if exist "abl.elf" (
 Set "enableABPartition=Yes"
 ) else (
 
-if not exist "recovery.img" (
-Set "enableABPartition=Yes"
-)
+:: if not exist "recovery.img" (
+:: Set "enableABPartition=Yes"
+:: )
 
 )
 
