@@ -20,7 +20,7 @@
 @echo       如果目录存在 abl.elf  则 AB 
 @echo.
 :: 
-:: 更新记录：(按需更新,有想法可交流定制 ( ^_^ ) wangjun
+:: 更新记录：(按需更新,有想法可交流定制 ( ^_^ ) 
 ::      添加 fsg 新增分区下载前擦除命令                               --20171120
 ::      添加到右键添加/取消 reg          
 ::      添加 asusfw.img/logo.bin                                      --20171204
@@ -32,6 +32,7 @@
 ::      添加 vendor.img                                               --20180108
 ::      添加 md5 校验功能                                             --20180115
 ::      适配移远配置                                                  --20190422
+::      添加 NDK 应用支持                                             --20191105
 :: 关于 Bug: 自行解决
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -82,7 +83,9 @@ Set GitPATH=%installPath%PortableGit\bin\git.exe
 ::  2. 为服务器释放的文件，进行二次解压 
 IF {%~x1}=={.apk} (goto handleApk) 
 
-
+:: 匹配后缀为 空 的情况，即一般为 NDK 应用
+::  1. 通过 adb 安装 
+IF {%~x1}=={} (goto handleNDK) 
 
 :: 匹配其他后缀镜像的情况：通过 adb/fastboot 下载
 :handleOthers
@@ -97,8 +100,22 @@ if "%bootChoice%"=="" goto main
 %ADBPATH% reboot bootloader
 goto main
 
+::::::::::::::::::::::::::::::::::::::::
+:: 处理 NDK 应用的情况
+::::::::::::::::::::::::::::::::::::::::
+:handleNDK
+@echo on
+%ADBPATH% wait-for-device
+%ADBPATH% remount
+%ADBPATH% push %~n1 /system/bin
+%ADBPATH% shell chmod 777 /system/bin/%~n1
+pause
+goto end
 
+
+::::::::::::::::::::::::::::::::::::::::
 :: 处理 apk 安装的情况
+::::::::::::::::::::::::::::::::::::::::
 :handleApk
 set /p bootChoice="直接回车安装 或输入 x 解压释放镜像: "
 if /I "%bootChoice%" EQU "X" goto unzipApk 
