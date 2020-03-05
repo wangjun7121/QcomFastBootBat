@@ -270,6 +270,9 @@ IF {%~n1}=={mdtpsecapp} (goto mdtpsecapp)
 IF {%~n1}=={BTFM} (goto BTFM) 
 IF {%~n1}=={storsec} (goto storsec) 
 
+IF {%~n1}=={dp_AP_signed} (goto dp_AP_signed)
+IF {%~n1}=={dp_MSA_signed} (goto dp_MSA_signed)
+
 goto ChoiceBootMode
 ::::::::::::::::::::::::::::::::::::::::::
 :: 进行 fastboot 刷入镜像
@@ -386,6 +389,28 @@ goto ChoiceBootMode
 :::::::::::::::::::::::
 
 ::  %~f1 将 %1 扩充到一个完全合格的路径名
+
+:dp_AP_signed
+@echo on
+if "%enableABPartition%"=="" (
+%FASTBOOTPATH% flash apdp "%~f1"
+) else (
+%FASTBOOTPATH% flash apdp "%~f1"
+)
+goto ChoiceBootMode
+
+:dp_MSA_signed
+@echo on
+if "%enableABPartition%"=="" (
+%FASTBOOTPATH% flash msadp "%~f1"
+) else (
+%FASTBOOTPATH% flash msadp "%~f1"
+)
+goto ChoiceBootMode
+
+
+
+
 :storsec
 @echo on
 if "%enableABPartition%"=="" (
